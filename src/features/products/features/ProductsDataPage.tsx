@@ -23,6 +23,7 @@ const ProductsDataPage = () => {
     rows,
     tableActions,
     tableRef,
+    isPending,
     handleScroll,
     isFetchingMore,
   } = useProductsTable();
@@ -61,26 +62,23 @@ const ProductsDataPage = () => {
         } products)`}
         hasMultiView={false}
       />
-      {false ? (
-        <Loader />
-      ) : (
-        <div
-          className="w-full h-full overflow-auto"
-          onScroll={handleScroll}
-          ref={tableRef}
-        >
-          <MainTable<ProductTableRow>
-            columns={columns}
-            data={rows!}
-            actions={tableActions}
-          />
-          {isFetchingMore && (
-            <div className="flex justify-center p-4">
-              <Loader />
-            </div>
-          )}
-        </div>
-      )}
+
+      <div
+        className="w-full h-full overflow-auto"
+        onScroll={handleScroll}
+        ref={tableRef}
+      >
+        <MainTable<ProductTableRow>
+          columns={columns}
+          data={rows!}
+          actions={tableActions}
+        />
+        {(isFetchingMore || isPending) && (
+          <div className="flex justify-center p-4">
+            <Loader />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
