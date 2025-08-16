@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff6a00;
+  --color-primary-text: #85878c;
+  --color-secondary-text: #798b9d;
+  --color-secondary-bg: #030711;
+  --color-primary-bg: linear-gradient(to right, #ff9100, var(--color-primary));
+}
+
+@layer components {
+  .bg-primary-gradient {
+    background-image: var(--color-primary-bg);
+  }
+
+  .hover-primary-gradient:hover {
+    background-image: var(--color-primary-bg);
+    color: white;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root,
+html,
+body {
+  height: 100vh;
+}
